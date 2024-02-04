@@ -4,10 +4,10 @@ import StaffList from './pages/StaffList'
 
 const AppRouter = () => {
     return (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/staff-list" element={<StaffList />} />
-      </Routes>
+        <Routes>  
+          <Route path="/" element={<Home />} />
+          <Route path="/staff-list" element={<StaffList />} />  
+        </Routes>
     )
   }
   
