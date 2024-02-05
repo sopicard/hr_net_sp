@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useAppContext } from '../contexts/AppContext'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import FieldConfig from '../components/FieldConfig'
 
 const StaffList = () => {
   const { employeesData } = useAppContext()
@@ -14,21 +15,17 @@ const StaffList = () => {
       <table>
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Start Date</th>
-            {/* Autres en-têtes de colonnes */}
+            {FieldConfig.map((field) => (
+              <th key={field.name}>{field.label}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {employeesData.map((employee, index) => (
             <tr key={index}>
-              <td>{employee.firstName}</td>
-              <td>{employee.lastName}</td>
-              <td>{employee.dateOfBirth}</td>
-              <td>{employee.startDate}</td>
-              {/* Autres cellules de tableau */}
+              {FieldConfig.map((field) => (
+                <td key={field.name}>{employee[field.name]}</td>
+              ))}
             </tr>
           ))}
         </tbody>

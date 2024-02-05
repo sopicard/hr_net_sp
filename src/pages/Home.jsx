@@ -1,4 +1,5 @@
 import Input from '../components/Input'
+import FieldConfig from '../components/FieldConfig'
 import { useAppContext } from '../contexts/AppContext'
 import { useNavigate } from 'react-router-dom'
 import { useState} from 'react'
@@ -8,12 +9,7 @@ const Home = () => {
   const navigate = useNavigate()
 
   // Utilise un état local pour le formulaire en cours
-  const [formState, setFormState] = useState({ 
-    firstName: '', 
-    lastName: '',
-    dateOfBirth: '',
-    startDate: '',
-  })
+  const [formState, setFormState] = useState({})
 
   // Mise à jour des données du formulaire
   const handleChange = (fieldName, value) => {
@@ -37,14 +33,9 @@ const Home = () => {
       localStorage.setItem('employeesData', JSON.stringify(updatedData))
       
       // Réinitialise le formulaire après la soumission
-      setFormState({ 
-        firstName: '',
-        lastName: '',
-        dateOfBirth: '',
-        startDate: '',
-      })
-
+      setFormState({})
       console.log('Form data submitted:', formState)
+
       alert('Employee Created !')
     }
   }  
@@ -52,11 +43,15 @@ const Home = () => {
     <div>
       <h2>Create Employee</h2>
       <form onSubmit={handleSubmit}>
-        <Input label="First Name" name="firstName" value={formState.firstName} onChange={(value) => handleChange('firstName', value)} />
-        <Input label="Last Name" name="lastName" value={formState.lastName} onChange={(value) => handleChange('lastName', value)} />
-        <Input label="Date of Birth" name="dateOfBirth" value={formState.dateOfBirth} onChange={(value) => handleChange('dateOfBirth', value)} />
-        <Input label="Start Date" name="startDate" value={formState.startDate} onChange={(value) => handleChange('startDate', value)} />
-        {/* Ajoutez d'autres champs avec des composants Input et leurs fonctions onChange */}
+        {FieldConfig.map((field) => (
+          <Input
+            key={field.name}
+            label={field.label}
+            name={field.name}
+            value={formState[field.name] || ''}
+            onChange={(value) => handleChange(field.name, value)}
+          />
+        ))}
         <button type="submit">Save</button>
       </form>
       <button onClick={() => navigate('/staff-list')}>View current employees</button>
