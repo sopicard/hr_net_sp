@@ -1,8 +1,8 @@
 const FieldConfig = [
-    { label: 'First Name', name: 'firstName' },
-    { label: 'Last Name', name: 'lastName' },
-    { label: 'Date of Birth', name: 'dateOfBirth' },
-    { label: 'Start Date', name: 'startDate' },
+    { label: 'First Name', name: 'firstName', type: 'text' },
+    { label: 'Last Name', name: 'lastName', type: 'text' },
+    { label: 'Date of Birth', name: 'dateOfBirth', type: 'date' },
+    { label: 'Start Date', name: 'startDate', type: 'date' },
   ]
   
 export default FieldConfig

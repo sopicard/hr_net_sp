@@ -41,20 +41,24 @@ const Home = () => {
   }  
   return (
     <div>
-      <h2>Create Employee</h2>
-      <form onSubmit={handleSubmit}>
-        {FieldConfig.map((field) => (
-          <Input
-            key={field.name}
-            label={field.label}
-            name={field.name}
-            value={formState[field.name] || ''}
-            onChange={(value) => handleChange(field.name, value)}
-          />
-        ))}
-        <button type="submit">Save</button>
-      </form>
-      <button onClick={() => navigate('/staff-list')}>View current employees</button>
+      <main>
+        <h1>HRnet</h1>
+        <button onClick={() => navigate('/staff-list')}>View current employees</button>
+        <h2>Create Employee</h2>
+        <form onSubmit={handleSubmit}>
+          {FieldConfig.map((field) => (
+            <Input
+              key={field.name}
+              label={field.label}
+              name={field.name}
+              type={field.type}
+              value={formState[field.name] || ''}
+              onChange={(fieldName, value) => handleChange(fieldName, value)}
+            />
+          ))}
+          <button type="submit">Save</button>
+        </form>
+      </main>
     </div>
   )
 }

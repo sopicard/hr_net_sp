@@ -4,6 +4,59 @@
 
 body {
   margin: 0;
+  background-color:  #FFC3A1;
 }
 
+main {
+  text-align: center;
+  background-color: #FFF3E2;
+  color: #A75D5D;
+  padding: 2rem;
+  margin: 2rem 6rem;
+  border-radius: 10px;
+}
+
+button {
+  border: #A75D5D 1px solid;
+  color: white;
+  background-color: #A75D5D;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.input-wrapper input:focus {
+  outline: 2px solid #F0997D; 
+  border: none;
+  color: #F0997D;
+}
+
+
+
+input {
+  border: #A75D5D 1px solid;
+  border-radius: 5px;
+  color: #A75D5D;
+  padding: 0.2rem;
+}
 
