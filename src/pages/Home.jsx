@@ -8,7 +8,12 @@ const Home = () => {
   const navigate = useNavigate()
 
   // Utilise un état local pour le formulaire en cours
-  const [formState, setFormState] = useState({ firstName: '', lastName: '' })
+  const [formState, setFormState] = useState({ 
+    firstName: '', 
+    lastName: '',
+    dateOfBirth: '',
+    startDate: '',
+  })
 
   // Mise à jour des données du formulaire
   const handleChange = (fieldName, value) => {
@@ -22,26 +27,35 @@ const Home = () => {
 
     // Enregistre dans le localStorage uniquement si le formulaire est complet
     if (formState.firstName && formState.lastName) {
+      const existingData = JSON.parse(localStorage.getItem('employeesData')) || []
+      const updatedData = [...existingData, formState]
+
       // Mise à jour des données dans le contexte
       saveFormData(formState)
 
-      const existingData = JSON.parse(localStorage.getItem('employeeData')) || []
-      const updatedData = [...existingData, formState]
-      localStorage.setItem('employeeData', JSON.stringify(updatedData))
+      // Sauvegarde dans le localStorage
+      localStorage.setItem('employeesData', JSON.stringify(updatedData))
       
-      console.log('Form data submitted:', formState)
-      alert('Employé créé')
-
       // Réinitialise le formulaire après la soumission
-      setFormState({ firstName: '', lastName: '' })
+      setFormState({ 
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+        startDate: '',
+      })
+
+      console.log('Form data submitted:', formState)
+      alert('Employee Created !')
     }
   }  
   return (
     <div>
       <h2>Create Employee</h2>
       <form onSubmit={handleSubmit}>
-        <Input label="Prénom" name="firstName" value={formState.firstName} onChange={(value) => handleChange('firstName', value)} />
-        <Input label="Nom" name="lastName" value={formState.lastName} onChange={(value) => handleChange('lastName', value)} />
+        <Input label="First Name" name="firstName" value={formState.firstName} onChange={(value) => handleChange('firstName', value)} />
+        <Input label="Last Name" name="lastName" value={formState.lastName} onChange={(value) => handleChange('lastName', value)} />
+        <Input label="Date of Birth" name="dateOfBirth" value={formState.dateOfBirth} onChange={(value) => handleChange('dateOfBirth', value)} />
+        <Input label="Start Date" name="startDate" value={formState.startDate} onChange={(value) => handleChange('startDate', value)} />
         {/* Ajoutez d'autres champs avec des composants Input et leurs fonctions onChange */}
         <button type="submit">Save</button>
       </form>

@@ -3,23 +3,21 @@ import { createContext, useContext, useState, useEffect} from 'react'
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-  const [employeeData, setEmployeeData] = useState([])
-  const [formData, setFormData] = useState({})
+  const [employeesData, setEmployeesData] = useState([])
 
   // Charger les données depuis le localStorage au chargement de la page
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('employeeData')) || [];
-    setEmployeeData(storedData)
+    const storedData = JSON.parse(localStorage.getItem('employeesData')) || [];
+    setEmployeesData(storedData)
   }, [])
 
   const saveFormData = (data) => {
     // Mettre à jour le contexte avec les nouvelles données
-    setEmployeeData([...employeeData, data])
-    setFormData(data)
+    setEmployeesData([...employeesData, data])
   }
   
   return (
-    <AppContext.Provider value={{ employeeData, formData, saveFormData }}>
+    <AppContext.Provider value={{ employeesData, saveFormData }}>
       {children}
     </AppContext.Provider>
   )

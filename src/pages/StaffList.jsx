@@ -3,10 +3,10 @@ import { useAppContext } from '../contexts/AppContext'
 import {useNavigate} from 'react-router-dom'
 
 const StaffList = () => {
-  const { employeeData } = useAppContext()
+  const { employeesData } = useAppContext()
   const navigate = useNavigate()
 
-  useEffect(() => {}, [employeeData])
+  useEffect(() => {}, [employeesData])
 
   return (
     <div>
@@ -14,16 +14,20 @@ const StaffList = () => {
       <table>
         <thead>
           <tr>
-            <th>Prénom</th>
-            <th>Nom</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Start Date</th>
             {/* Autres en-têtes de colonnes */}
           </tr>
         </thead>
         <tbody>
-          {employeeData.map((employee, index) => (
+          {employeesData.map((employee, index) => (
             <tr key={index}>
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
+              <td>{employee.dateOfBirth}</td>
+              <td>{employee.startDate}</td>
               {/* Autres cellules de tableau */}
             </tr>
           ))}

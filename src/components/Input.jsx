@@ -1,4 +1,4 @@
-const Input = ({ label, value, onChange }) => {
+const Input = ({ label, name, value, onChange }) => {
   const handleChange = (e) => {
     onChange(e.target.value)
   }
@@ -6,7 +6,7 @@ const Input = ({ label, value, onChange }) => {
   return (
     <div>
       <label>{label}</label>
-      <input type="text" value={value} onChange={handleChange} />
+      <input name= {name} type="text" value={value} onChange={handleChange} />
     </div>
   )
 }
