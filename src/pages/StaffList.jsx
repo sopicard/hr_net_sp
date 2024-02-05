@@ -3,10 +3,10 @@ import { useAppContext } from '../contexts/AppContext'
 import {useNavigate} from 'react-router-dom'
 
 const StaffList = () => {
-  const { formData } = useAppContext()
+  const { employeeData } = useAppContext()
   const navigate = useNavigate()
 
-  useEffect(() => {}, [formData])
+  useEffect(() => {}, [employeeData])
 
   return (
     <div>
@@ -20,11 +20,13 @@ const StaffList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{formData.firstName}</td>
-            <td>{formData.lastName}</td>
-            {/* Autres cellules de tableau */}
-          </tr>
+          {employeeData.map((employee, index) => (
+            <tr key={index}>
+              <td>{employee.firstName}</td>
+              <td>{employee.lastName}</td>
+              {/* Autres cellules de tableau */}
+            </tr>
+          ))}
         </tbody>
       </table>
       <button onClick={() => navigate('/')}>Home</button>

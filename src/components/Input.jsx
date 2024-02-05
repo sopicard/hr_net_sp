@@ -1,17 +1,12 @@
-import { useAppContext } from '../contexts/AppContext'
-
-const Input = ({ label, name }) => {
-  const { formData, saveFormData } = useAppContext()
-
+const Input = ({ label, value, onChange }) => {
   const handleChange = (e) => {
-    const newData = { ...formData, [name]: e.target.value }
-    saveFormData(newData)
-  };
+    onChange(e.target.value)
+  }
 
   return (
     <div>
       <label>{label}</label>
-      <input type="text" value={formData[name] || ''} onChange={handleChange} />
+      <input type="text" value={value} onChange={handleChange} />
     </div>
   )
 }

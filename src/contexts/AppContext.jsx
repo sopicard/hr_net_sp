@@ -1,16 +1,25 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect} from 'react'
 
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
+  const [employeeData, setEmployeeData] = useState([])
   const [formData, setFormData] = useState({})
 
+  // Charger les données depuis le localStorage au chargement de la page
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('employeeData')) || [];
+    setEmployeeData(storedData)
+  }, [])
+
   const saveFormData = (data) => {
+    // Mettre à jour le contexte avec les nouvelles données
+    setEmployeeData([...employeeData, data])
     setFormData(data)
   }
-
+  
   return (
-    <AppContext.Provider value={{ formData, saveFormData }}>
+    <AppContext.Provider value={{ employeeData, formData, saveFormData }}>
       {children}
     </AppContext.Provider>
   )
