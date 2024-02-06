@@ -23,6 +23,7 @@ button {
   padding: 0.5rem;
   border-radius: 5px;
   font-weight: bold;
+  margin-top: 1rem;
 }
 
 h2 {
@@ -51,12 +52,28 @@ form {
   color: #F0997D;
 }
 
-
-
 input {
   border: #A75D5D 1px solid;
   border-radius: 5px;
   color: #A75D5D;
   padding: 0.2rem;
+}
+
+label {
+  font-size: 14px;
+  text-align: left;
+}
+
+table {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  table-layout: auto;
+}
+
+td,th {
+  padding: 10px;
+  text-align: left;
 }
 
