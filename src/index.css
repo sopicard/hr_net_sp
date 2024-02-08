@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -64,16 +64,73 @@ label {
   text-align: left;
 }
 
-table {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  table-layout: auto;
+
+
+/* StaffList */
+
+/* .staff-list__search .MuiFormLabel-root {
+  color: #A75D5D !important;
 }
 
-td,th {
-  padding: 10px;
-  text-align: left;
+.staff-list__search .MuiOutlinedInput-notchedOutline {
+  border-color: #A75D5D;
 }
+
+
+.staff-list__search .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #F0997D !important;
+} */
+
+
+/* en tetes */
+.MuiBox-root {
+  color: #A75D5D
+}
+
+/* flèches de tri */
+.MuiTableHead-root .MuiSvgIcon-root {
+  color: #A75D5D
+}
+
+/* texte des employés */
+.MuiTableBody-root .MuiTableCell-root {
+  color: #A75D5D
+}
+
+/* home */
+.staff-list__button.MuiButton-outlined {
+  border: #A75D5D 1px solid;
+  color: white;
+  background-color: #A75D5D;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+/* next and previous */
+.staff-list__pagination.MuiButton-outlined {
+  border: #A75D5D 1px solid;
+  color: white;
+  background-color: #A75D5D;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+/* Style pour le bouton de la page en cours */
+.staff-list__pagination.current-page.MuiButton-outlined {
+  border: #A75D5D 1px solid;
+  color:#A75D5D;
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+
+
+
+/* Couleur du texte des options du sélecteur 
+.MuiMenuItem-root {
+  color: #A75D5D !important;
+}*/
+
+
 
