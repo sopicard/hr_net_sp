@@ -46,6 +46,12 @@ const Home = () => {
       alert('Employee Created !')
     }
   }  
+
+  // Fonction pour filtrer les champs à inclure dans le fieldset
+  const getAddressFields = () => {
+    return FieldConfig.filter((field) => ['street', 'city', 'state', 'zipCode'].includes(field.name))
+  }
+
   return (
     <div>
       <main>
@@ -53,16 +59,49 @@ const Home = () => {
         <button onClick={() => navigate('/staff-list')}>View current employees</button>
         <h2>Create Employee</h2>
         <form onSubmit={handleSubmit}>
-          {FieldConfig.map((field) => (
-            <Input
-              key={field.name}
-              label={field.label}
-              name={field.name}
-              type={field.type}
-              value={formState[field.name] || ''}
-              onChange={(fieldName, value) => handleChange(fieldName, value)}
-            />
-          ))}
+          {/* Section pour les champs avant le fieldset "Address" */}
+          {['firstName', 'lastName', 'dateOfBirth', 'startDate'].map((fieldName) => {
+            const field = FieldConfig.find((f) => f.name === fieldName);
+            return (
+              <Input
+                key={field.name}
+                label={field.label}
+                name={field.name}
+                type={field.type}
+                value={formState[field.name] || ''}
+                onChange={(fieldName, value) => handleChange(fieldName, value)}
+              />
+            );
+          })}
+          {/* Fieldset "Address" */}
+          <fieldset>
+            <legend>Address</legend>
+            {/* Générer dynamiquement les champs de l'adresse */}
+            {getAddressFields().map((field) => (
+              <Input
+                key={field.name}
+                label={field.label}
+                name={field.name}
+                type={field.type}
+                value={formState[field.name] || ''}
+                onChange={(fieldName, value) => handleChange(fieldName, value)}
+              />
+            ))}
+          </fieldset>
+          {/* Section pour le champ select "Department" */}
+          {['department'].map((fieldName) => {
+            const field = FieldConfig.find((f) => f.name === fieldName);
+            return (
+              <Input
+                key={field.name}
+                label={field.label}
+                name={field.name}
+                type={field.type}
+                value={formState[field.name] || ''}
+                onChange={(fieldName, value) => handleChange(fieldName, value)}
+              />
+            );
+          })}
           <button type="submit">Save</button>
         </form>
       </main>

@@ -30,32 +30,6 @@ export default FieldConfig
           // </fieldset>
   
 
-{/*  */}
 
 
-// 
 
-// return (
-//   <div className='input-wrapper'>
-//     <label>{label}</label>
-//     {type === 'date' ? (
-//       <DatePicker selected={value} onChange={(date) => onChange(name, date)} />
-//     ) : type === 'select' ? (
-//       <select name={name} value={value} onChange={handleChange}>
-//         <option value="">Select State</option>
-//         {StatesList.map((state) => (
-//           <option key={state.abbreviation} value={state.abbreviation}>
-//             {state.name}
-//           </option>
-//         ))}
-//       </select>
-//     ) : (
-//       <input
-//         name={name}
-//         type={type}
-//         value={value} 
-//         onChange={handleChange} 
-//       />
-//     )}
-//   </div>
-// )
