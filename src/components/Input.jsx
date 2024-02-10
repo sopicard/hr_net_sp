@@ -18,7 +18,8 @@ const Input = ({ label, name, type, value, onChange }) => {
       <label>{label}</label>
       {type === 'date' ? (
         <DatePicker selected={value} onChange={(date) => onChange(name, date)} />
-      ) : type === 'select' ? (
+      ) : 
+      type === 'select' && name === 'state' ? (
         <select name={name} value={value} onChange={handleChange}>
           <option value="">Select State</option>
           {StatesList.map((state) => (
@@ -26,6 +27,16 @@ const Input = ({ label, name, type, value, onChange }) => {
               {state.name}
             </option>
           ))}
+        </select>
+      ) : 
+      type === 'select' && name === 'department' ? (
+        <select name={name} value={value} onChange={handleChange}>
+          <option value="">Select Department</option>
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Human Resources">Human Resources</option>
+          <option value="Legal">Legal</option>
         </select>
       ) : (
         <input
