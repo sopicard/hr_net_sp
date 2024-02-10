@@ -23,6 +23,13 @@ const Home = () => {
 
     // Enregistre dans le localStorage uniquement si le formulaire est complet
     if (formState.firstName && formState.lastName) {
+      // Vérifie si le code postal ne contient que des chiffres après le filtrage
+      if (formState.zipCode && !/^\d+$/.test(formState.zipCode)) {
+        alert('Please enter a valid zip code.')
+        // Arrête la soumission du formulaire si le code postal n'est pas valide
+        return 
+      }
+
       const existingData = JSON.parse(localStorage.getItem('employeesData')) || []
       const updatedData = [...existingData, formState]
 
