@@ -20,7 +20,7 @@ const Input = ({ label, name, type, value, onChange }) => {
         <DatePicker selected={value} onChange={(date) => onChange(name, date)} />
       ) : 
       type === 'select' && name === 'state' ? (
-        <select name={name} value={value} onChange={handleChange}>
+        <select className='form__select' name={name} value={value} onChange={handleChange}>
           <option value="">Select State</option>
           {StatesList.map((state) => (
             <option key={state.abbreviation} value={state.abbreviation}>
@@ -30,7 +30,7 @@ const Input = ({ label, name, type, value, onChange }) => {
         </select>
       ) : 
       type === 'select' && name === 'department' ? (
-        <select name={name} value={value} onChange={handleChange}>
+        <select className='form__select' name={name} value={value} onChange={handleChange}>
           <option value="">Select Department</option>
           <option value="Sales">Sales</option>
           <option value="Marketing">Marketing</option>
@@ -40,6 +40,7 @@ const Input = ({ label, name, type, value, onChange }) => {
         </select>
       ) : (
         <input
+          className='form__input'
           name={name}
           type={type}
           value={value} 

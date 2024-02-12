@@ -21,30 +21,32 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // Enregistre dans le localStorage uniquement si le formulaire est complet
-    if (formState.firstName && formState.lastName) {
-      // Vérifie si le code postal ne contient que des chiffres après le filtrage
-      if (formState.zipCode && !/^\d+$/.test(formState.zipCode)) {
-        alert('Please enter a valid zip code.')
-        // Arrête la soumission du formulaire si le code postal n'est pas valide
-        return 
-      }
-
-      const existingData = JSON.parse(localStorage.getItem('employeesData')) || []
-      const updatedData = [...existingData, formState]
-
-      // Mise à jour des données dans le contexte
-      saveFormData(formState)
-
-      // Sauvegarde dans le localStorage
-      localStorage.setItem('employeesData', JSON.stringify(updatedData))
-      
-      // Réinitialise le formulaire après la soumission
-      setFormState({})
-      console.log('Form data submitted:', formState)
-
-      alert('Employee Created !')
+    // Vérifie si les champs firstName et lastName sont remplis
+    if (!formState.firstName || !formState.lastName) {
+      alert('Please enter both first name and last name.');
+      return
     }
+    // Vérifie si le code postal ne contient que des chiffres après le filtrage
+    if (formState.zipCode && !/^\d+$/.test(formState.zipCode)) {
+      alert('Please enter a valid zip code containing only numbers.')
+      // Arrête la soumission du formulaire si le code postal n'est pas valide
+      return 
+    }
+
+    const existingData = JSON.parse(localStorage.getItem('employeesData')) || []
+    const updatedData = [...existingData, formState]
+
+    // Mise à jour des données dans le contexte
+    saveFormData(formState)
+
+    // Sauvegarde dans le localStorage
+    localStorage.setItem('employeesData', JSON.stringify(updatedData))
+    
+    // Réinitialise le formulaire après la soumission
+    setFormState({})
+    console.log('Form data submitted:', formState)
+
+    alert('Employee Created !')
   }  
 
   // Fonction pour filtrer les champs à inclure dans le fieldset
@@ -55,31 +57,35 @@ const Home = () => {
   return (
     <div>
       <main>
-        <h1>HRnet</h1>
+        <h1 className='mainTitle'>HRnet</h1>
         <button onClick={() => navigate('/staff-list')}>View current employees</button>
-        <h2>Create Employee</h2>
-        <form onSubmit={handleSubmit}>
+        <h2 className='subTitle'>Create Employee</h2>
+        <form className='form' onSubmit={handleSubmit}>
           {/* Section pour les champs avant le fieldset "Address" */}
           {['firstName', 'lastName', 'dateOfBirth', 'startDate'].map((fieldName) => {
             const field = FieldConfig.find((f) => f.name === fieldName);
             return (
               <Input
                 key={field.name}
-                label={field.label}
+                labelClassName="form__label"
+                inputClassName="form__input"
+                label={field.name === 'firstName' || field.name === 'lastName' ? `${field.label} *` : field.label}
                 name={field.name}
                 type={field.type}
                 value={formState[field.name] || ''}
                 onChange={(fieldName, value) => handleChange(fieldName, value)}
               />
-            );
+            )
           })}
           {/* Fieldset "Address" */}
-          <fieldset>
-            <legend>Address</legend>
+          <fieldset className='form__fieldset'>
+            <legend className='form__legend'>Address</legend>
             {/* Générer dynamiquement les champs de l'adresse */}
             {getAddressFields().map((field) => (
               <Input
                 key={field.name}
+                labelClassName="form__label"
+                inputClassName="form__input"
                 label={field.label}
                 name={field.name}
                 type={field.type}
@@ -94,13 +100,15 @@ const Home = () => {
             return (
               <Input
                 key={field.name}
+                labelClassName="form__label"
+                inputClassName="form__input"
                 label={field.label}
                 name={field.name}
                 type={field.type}
                 value={formState[field.name] || ''}
                 onChange={(fieldName, value) => handleChange(fieldName, value)}
               />
-            );
+            )
           })}
           <button type="submit">Save</button>
         </form>

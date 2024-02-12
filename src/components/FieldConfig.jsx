@@ -13,23 +13,6 @@ const FieldConfig = [
 export default FieldConfig
 
 
-          // {/* Fieldset Address */}
-          // <fieldset>
-          //   <legend>Address</legend>
-          //   {/* Champs street, city, state, zipCode */}
-          //   {['street', 'city', 'state', 'zipCode'].map(fieldName => (
-          //     <Input
-          //       key={fieldName}
-          //       label={FieldConfig.find(field => field.name === fieldName).label}
-          //       name={fieldName}
-          //       type={FieldConfig.find(field => field.name === fieldName).type}
-          //       value={formState[fieldName] || ''}
-          //       onChange={(fieldName, value) => handleChange(fieldName, value)}
-          //     />
-          //   ))}
-          // </fieldset>
-  
-
 
 
 
