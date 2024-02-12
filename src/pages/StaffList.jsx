@@ -3,7 +3,6 @@ import { useAppContext } from '../contexts/AppContext'
 import { useNavigate } from 'react-router-dom'
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Button, Typography, TextField, IconButton, Box, MenuItem } from '@mui/material'
 import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material'
-import FieldConfig from '../components/FieldConfig'
 
 const formatDate = (date) => {
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
@@ -20,6 +19,18 @@ const StaffList = () => {
   const [order, setOrder] = useState('asc')
 
   useEffect(() => {}, [employeesData])
+
+  const fields = [
+    { label: 'First Name', name: 'firstName', type: 'text' },
+    { label: 'Last Name', name: 'lastName', type: 'text' },
+    { label: 'Date of Birth', name: 'dateOfBirth', type: 'date' },
+    { label: 'Start Date', name: 'startDate', type: 'date' },
+    { label: 'Street', name: 'street', type: 'text' }, 
+    { label: 'City', name: 'city', type: 'text' }, 
+    { label: 'State', name: 'state', type: 'select' },
+    { label: 'Zip Code', name: 'zipCode', type: 'text' },
+    { label: 'Department', name: 'department', type: 'select' },
+  ]
 
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === 'asc'
@@ -92,7 +103,7 @@ const StaffList = () => {
           <Table>
             <TableHead>
               <TableRow>
-                {FieldConfig.map((field) => (
+                {fields.map((field) => (
                   <TableCell key={field.name}>
                     <Box display="flex" alignItems="center">
                       {field.label}
@@ -112,7 +123,7 @@ const StaffList = () => {
             <TableBody>
               {filteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((employee, index) => (
                 <TableRow key={index}>
-                  {FieldConfig.map((field) => (
+                  {fields.map((field) => (
                     <TableCell key={field.name}>{field.type === 'date' ? formatDate(employee[field.name]) : employee[field.name]}</TableCell>
                   ))}
                 </TableRow>

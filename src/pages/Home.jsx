@@ -1,5 +1,6 @@
-import Input from '../components/Input'
-import FieldConfig from '../components/FieldConfig'
+import InputText from '../components/InputText'
+import InputDate from '../components/InputDate'
+import InputSelect from '../components/InputSelect'
 import { useAppContext } from '../contexts/AppContext'
 import { useNavigate } from 'react-router-dom'
 import { useState} from 'react'
@@ -7,7 +8,6 @@ import { useState} from 'react'
 const Home = () => {
   const { saveFormData } = useAppContext()
   const navigate = useNavigate()
-
   // Utilise un état local pour le formulaire en cours
   const [formState, setFormState] = useState({})
 
@@ -20,7 +20,6 @@ const Home = () => {
   // Mise à jour des données dans le contexte et sauvegarde dans le localStorage
   const handleSubmit = (e) => {
     e.preventDefault()
-
     // Vérifie si les champs firstName et lastName sont remplis
     if (!formState.firstName || !formState.lastName) {
       alert('Please enter both first name and last name.');
@@ -38,79 +37,79 @@ const Home = () => {
 
     // Mise à jour des données dans le contexte
     saveFormData(formState)
-
     // Sauvegarde dans le localStorage
-    localStorage.setItem('employeesData', JSON.stringify(updatedData))
-    
+    localStorage.setItem('employeesData', JSON.stringify(updatedData))  
     // Réinitialise le formulaire après la soumission
     setFormState({})
     console.log('Form data submitted:', formState)
-
     alert('Employee Created !')
   }  
-
-  // Fonction pour filtrer les champs à inclure dans le fieldset
-  const getAddressFields = () => {
-    return FieldConfig.filter((field) => ['street', 'city', 'state', 'zipCode'].includes(field.name))
-  }
 
   return (
     <div>
       <main>
         <h1 className='mainTitle'>HRnet</h1>
-        <button onClick={() => navigate('/staff-list')}>View current employees</button>
+        <button className='button' onClick={() => navigate('/staff-list')}>View current employees</button>
         <h2 className='subTitle'>Create Employee</h2>
         <form className='form' onSubmit={handleSubmit}>
-          {/* Section pour les champs avant le fieldset "Address" */}
-          {['firstName', 'lastName', 'dateOfBirth', 'startDate'].map((fieldName) => {
-            const field = FieldConfig.find((f) => f.name === fieldName);
-            return (
-              <Input
-                key={field.name}
-                labelClassName="form__label"
-                inputClassName="form__input"
-                label={field.name === 'firstName' || field.name === 'lastName' ? `${field.label} *` : field.label}
-                name={field.name}
-                type={field.type}
-                value={formState[field.name] || ''}
-                onChange={(fieldName, value) => handleChange(fieldName, value)}
-              />
-            )
-          })}
-          {/* Fieldset "Address" */}
+          <InputText
+            label="First Name *"
+            name="firstName"
+            value={formState.firstName || ''}
+            onChange={(fieldName, value) => handleChange(fieldName, value)}
+          />
+          <InputText
+            label="Last Name *"
+            name="lastName"
+            value={formState.lastName || ''}
+            onChange={(fieldName, value) => handleChange(fieldName, value)}
+          />
+          <InputDate
+            label="Date of Birth"
+            name="dateOfBirth"
+            value={formState.dateOfBirth || ''}
+            onChange={(fieldName, value) => handleChange(fieldName, value)}
+          />
+          <InputDate
+            label="Start Date"
+            name="startDate"
+            value={formState.startDate || ''}
+            onChange={(fieldName, value) => handleChange(fieldName, value)}
+          />
           <fieldset className='form__fieldset'>
             <legend className='form__legend'>Address</legend>
-            {/* Générer dynamiquement les champs de l'adresse */}
-            {getAddressFields().map((field) => (
-              <Input
-                key={field.name}
-                labelClassName="form__label"
-                inputClassName="form__input"
-                label={field.label}
-                name={field.name}
-                type={field.type}
-                value={formState[field.name] || ''}
-                onChange={(fieldName, value) => handleChange(fieldName, value)}
-              />
-            ))}
+            <InputText
+              label="Street"
+              name="street"
+              value={formState.street || ''}
+              onChange={(fieldName, value) => handleChange(fieldName, value)}
+            />
+            <InputText
+              label="City"
+              name="city"
+              value={formState.city || ''}
+              onChange={(fieldName, value) => handleChange(fieldName, value)}
+            />
+            <InputSelect
+              label="State"
+              name="state"
+              value={formState.state || ''}
+              onChange={(fieldName, value) => handleChange(fieldName, value)}
+            />
+            <InputText
+              label="Zip Code"
+              name="zipCode"
+              value={formState.zipCode || ''}
+              onChange={(fieldName, value) => handleChange(fieldName, value)}
+            />
           </fieldset>
-          {/* Section pour le champ select "Department" */}
-          {['department'].map((fieldName) => {
-            const field = FieldConfig.find((f) => f.name === fieldName);
-            return (
-              <Input
-                key={field.name}
-                labelClassName="form__label"
-                inputClassName="form__input"
-                label={field.label}
-                name={field.name}
-                type={field.type}
-                value={formState[field.name] || ''}
-                onChange={(fieldName, value) => handleChange(fieldName, value)}
-              />
-            )
-          })}
-          <button type="submit">Save</button>
+            <InputSelect
+              label="Department"
+              name="department"
+              value={formState.department || ''}
+              onChange={(fieldName, value) => handleChange(fieldName, value)}
+            />
+          <button className='button' type="submit">Save</button>
         </form>
       </main>
     </div>
