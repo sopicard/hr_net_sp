@@ -1,6 +1,7 @@
 import InputText from '../components/InputText'
 import InputDate from '../components/InputDate'
 import InputSelect from '../components/InputSelect'
+import Modal from '../components/Modal'
 import { useAppContext } from '../contexts/AppContext'
 import { useNavigate } from 'react-router-dom'
 import { useState} from 'react'
@@ -10,11 +11,16 @@ const Home = () => {
   const navigate = useNavigate()
   // Utilise un état local pour le formulaire en cours
   const [formState, setFormState] = useState({})
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Mise à jour des données du formulaire
   const handleChange = (fieldName, value) => {
     // Mise à jour du formulaire en cours
     setFormState({ ...formState, [fieldName]: value })
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   }
 
   // Mise à jour des données dans le contexte et sauvegarde dans le localStorage
@@ -42,7 +48,7 @@ const Home = () => {
     // Réinitialise le formulaire après la soumission
     setFormState({})
     console.log('Form data submitted:', formState)
-    alert('Employee Created !')
+    setIsModalOpen(true)
   }  
 
   return (
@@ -53,64 +59,67 @@ const Home = () => {
         <h2 className='subTitle'>Create Employee</h2>
         <form className='form' onSubmit={handleSubmit}>
           <InputText
-            label="First Name *"
-            name="firstName"
+            label='First Name *'
+            name='firstName'
             value={formState.firstName || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
           />
           <InputText
-            label="Last Name *"
-            name="lastName"
+            label='Last Name *'
+            name='lastName'
             value={formState.lastName || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
           />
           <InputDate
-            label="Date of Birth"
-            name="dateOfBirth"
+            label='Date of Birth'
+            name='dateOfBirth'
             value={formState.dateOfBirth || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
           />
           <InputDate
-            label="Start Date"
-            name="startDate"
+            label='Start Date'
+            name='startDate'
             value={formState.startDate || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
           />
           <fieldset className='form__fieldset'>
             <legend className='form__legend'>Address</legend>
             <InputText
-              label="Street"
-              name="street"
+              label='Street'
+              name='street'
               value={formState.street || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
             />
             <InputText
-              label="City"
-              name="city"
+              label='City'
+              name='city'
               value={formState.city || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
             />
             <InputSelect
-              label="State"
-              name="state"
+              label='State'
+              name='state'
               value={formState.state || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
             />
             <InputText
-              label="Zip Code"
-              name="zipCode"
+              label='Zip Code'
+              name='zipCode'
               value={formState.zipCode || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
             />
           </fieldset>
             <InputSelect
-              label="Department"
-              name="department"
+              label='Department'
+              name='department'
               value={formState.department || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
             />
-          <button className='button' type="submit">Save</button>
+          <button className='button' type='submit'>Save</button>
         </form>
+        <div>
+          <Modal isOpen={isModalOpen} onClose={handleCloseModal} message='Employee Created !' />
+        </div>
       </main>
     </div>
   )

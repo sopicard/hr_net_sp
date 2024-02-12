@@ -49,6 +49,7 @@ main {
   justify-content: center;
   align-items: center;
   margin: auto;
+  z-index: 0;
 }
 
 .form__input-wrapper {
@@ -89,34 +90,83 @@ main {
 .form__legend {
   font-weight: bold;
   font-size: 18px;
+  text-align: left;
+}
+
+/* Modale */
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #A75D5D;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  border-radius: 10px;
+}
+
+.modal__content {
+  background-color: #FFF3E2;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 30px;
+  color: #FFF3E2;
+}
+
+.modal__close:hover {
+  color: #F0997D;
+}
+
+.modal__message {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5;
 }
 
 /* StaffList */
 
-/* en-tetes */
+  /* en-tetes */
 .MuiBox-root {
   color: #A75D5D;
 }
 
-/* flèches de tri */
+  /* flèches de tri */
 .MuiTableHead-root .MuiSvgIcon-root {
   color: #A75D5D;
 }
 
-/* texte des employés */
+  /* texte des employés */
 .MuiTableBody-root .MuiTableCell-root {
   color: #A75D5D;
 }
 
-/* bouton home */
+.staff-list__entries {
+  margin-top: 1rem;
+  padding-left: 0px !important;
+}
+
+  /* bouton home */
 .staff-list__button.MuiButton-outlined {
   border: #A75D5D 1px solid;
   color: white;
   background-color: #A75D5D;
-  padding: 0.5rem;
+  padding: 0.5rem rem;
   border-radius: 5px;
   margin-top: 1.5rem;
-  letter-spacing: 0.1rem;
 }
 
 .staff-list__button.MuiButton-outlined:hover {
@@ -125,14 +175,13 @@ main {
   background-color: #F0997D;
 }
 
-/* boutons next & previous */
+  /* boutons next & previous */
 .staff-list__pagination.MuiButton-outlined {
   border: #A75D5D 1px solid;
   color: white;
   background-color: #A75D5D;
   padding: 0.5rem;
   border-radius: 5px;
-  margin-top: 1rem;
 }
 
 .staff-list__pagination.MuiButton-outlined:hover {
@@ -141,131 +190,7 @@ main {
   background-color: #F0997D;
 }
 
-/* Style pour le bouton de la page en cours */
-.staff-list__pagination.current-page.MuiButton-outlined {
-  border: #A75D5D 1px solid;
-  color:#A75D5D;
-  background-color: white;
-  padding: 0.5rem;
-  border-radius: 5px;
-}
-
-
-
-
-:root {
-  font-family: 'Roboto', sans-serif;
-}
-
-body {
-  margin: 0;
-  background-color:  #FFC3A1;
-}
-
-main {
-  text-align: center;
-  background-color: #FFF3E2;
-  color: #A75D5D;
-  padding: 2rem;
-  margin: 2rem 6rem;
-  border-radius: 10px;
-}
-
-button {
-  border: #A75D5D 1px solid;
-  color: white;
-  background-color: #A75D5D;
-  padding: 0.5rem;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-top: 1rem;
-}
-
-h2 {
-  font-weight: normal;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: fit-content;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-}
-
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.input-wrapper input:focus {
-  outline: 2px solid #F0997D; 
-  border: none;
-  color: #F0997D;
-}
-
-input, select{
-  border: #A75D5D 1px solid;
-  border-radius: 5px;
-  color: #A75D5D;
-  padding: 0.2rem;
-  width: 200px;
-  box-sizing: content-box;
-}
-
-label {
-  font-size: 14px;
-  text-align: left;
-}
-
-fieldset {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border-style: none;
-  border: 1px solid #A75D5D;
-  padding: 1rem 1rem 2rem 1rem;
-}
-
-/* StaffList */
-
-/* en-tetes */
-.MuiBox-root {
-  color: #A75D5D;
-}
-
-/* flèches de tri */
-.MuiTableHead-root .MuiSvgIcon-root {
-  color: #A75D5D;
-}
-
-/* texte des employés */
-.MuiTableBody-root .MuiTableCell-root {
-  color: #A75D5D;
-}
-
-/* bouton home */
-.staff-list__button.MuiButton-outlined {
-  border: #A75D5D 1px solid;
-  color: white;
-  background-color: #A75D5D;
-  padding: 0.5rem;
-  border-radius: 5px;
-}
-
-/* boutons next & previous */
-.staff-list__pagination.MuiButton-outlined {
-  border: #A75D5D 1px solid;
-  color: white;
-  background-color: #A75D5D;
-  padding: 0.5rem;
-  border-radius: 5px;
-}
-
-/* Style pour le bouton de la page en cours */
+  /* style pour le bouton de la page en cours */
 .staff-list__pagination.current-page.MuiButton-outlined {
   border: #A75D5D 1px solid;
   color:#A75D5D;

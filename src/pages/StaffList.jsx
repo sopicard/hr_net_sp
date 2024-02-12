@@ -32,12 +32,6 @@ const StaffList = () => {
     { label: 'Department', name: 'department', type: 'select' },
   ]
 
-  const handleRequestSort = (property) => {
-    const isAsc = orderBy === property && order === 'asc'
-    setOrder(isAsc ? 'desc' : 'asc')
-    setOrderBy(property)
-  }
-
   const sortedData = orderBy
     ? employeesData.slice().sort((a, b) => {
         if (order === 'asc') {
@@ -53,6 +47,12 @@ const StaffList = () => {
       value.toString().toLowerCase().includes(searchTerm.toLowerCase())
     )
   })
+ 
+  const handleRequestSort = (property) => {
+    const isAsc = orderBy === property && order === 'asc'
+    setOrder(isAsc ? 'desc' : 'asc')
+    setOrderBy(property)
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -131,7 +131,7 @@ const StaffList = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Box display="flex" justifyContent="space-between" alignItems="center" pt={1} pl={2}>
+        <Box className='staff-list__entries' display="flex" justifyContent="space-between" alignItems="center" pt={1} pl={2}>
           <Typography variant="body2" component="span">
             Showing {Math.min(page * rowsPerPage + 1, filteredData.length)} to {Math.min((page + 1) * rowsPerPage, filteredData.length)} of {filteredData.length} entries
           </Typography>

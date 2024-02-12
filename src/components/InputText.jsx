@@ -4,9 +4,9 @@ const InputText = ({ label, name, value, onChange }) => {
     }
   
     return (
-      <div className="input-wrapper">
-        <label>{label}</label>
-        <input name={name} type="text" value={value} onChange={handleChange} />
+      <div className='form__input-wrapper'>
+        <label className='form__label'>{label}</label>
+        <input className='form__input' name={name} type="text" value={value} onChange={handleChange} />
       </div>
     )
   }
