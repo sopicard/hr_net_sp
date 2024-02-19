@@ -30,7 +30,6 @@ const InputSelect = ({ label, name, value, onChange }) => {
     <div className='form__input-wrapper'>
       <label className='form__label' >{label}</label>
       <select className='form__select' name={name} value={value} onChange={handleChange}>
-        <option value=''>{`Select ${label}`}</option>
         {options}
       </select>
     </div>

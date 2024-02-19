@@ -8,7 +8,11 @@ const Modal = ({ isOpen, onClose, message }) => {
         <p className="modal__message">{message}</p>
       </div>
     </div>
+    
   )
 }
 
 export default Modal
+
+
+

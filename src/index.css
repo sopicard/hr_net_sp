@@ -49,7 +49,6 @@ main {
   justify-content: center;
   align-items: center;
   margin: auto;
-  z-index: 0;
 }
 
 .form__input-wrapper {
@@ -84,6 +83,7 @@ main {
   gap: 1rem;
   border-style: none;
   border: 1px solid #A75D5D;
+  border-radius: 5px;
   padding: 1rem 1rem 2rem 1rem;
 }
 
@@ -100,41 +100,42 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #A75D5D;
-  width: 50%;
-  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  border-radius: 10px;
+
 }
 
 .modal__content {
-  background-color: #FFF3E2;
-  padding: 20px;
-  border-radius: 5px;
-  width: 80%;
-  max-width: 600px;
+  padding: 2rem;
+  width: 14rem;
+  background-color: #F0997D;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 0px #A75D5D;
 }
 
 .modal__close {
   position: absolute;
-  top: 10px;
+  top: 2px;
   right: 10px;
   cursor: pointer;
   font-size: 30px;
-  color: #FFF3E2;
+  color: #A75D5D;
 }
 
 .modal__close:hover {
-  color: #F0997D;
+  color: #FFC3A1;
 }
 
 .modal__message {
   font-size: 18px;
   font-weight: bold;
-  line-height: 1.5;
+  margin: 0;
+  border-radius: 10px;
+  padding: 2rem;
+  background-color: #FFC3A1;
+  box-shadow: 5px 5px 5px 0px #A75D5D;  
 }
 
 /* StaffList */
@@ -198,3 +199,8 @@ main {
   padding: 0.5rem;
   border-radius: 5px;
 }
+
+
+
+
+

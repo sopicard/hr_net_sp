@@ -1,6 +1,7 @@
 import InputText from '../components/InputText'
 import InputDate from '../components/InputDate'
 import InputSelect from '../components/InputSelect'
+import InputNumber from '../components/InputNumber'
 import Modal from '../components/Modal'
 import { useAppContext } from '../contexts/AppContext'
 import { useNavigate } from 'react-router-dom'
@@ -26,17 +27,6 @@ const Home = () => {
   // Mise à jour des données dans le contexte et sauvegarde dans le localStorage
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Vérifie si les champs firstName et lastName sont remplis
-    if (!formState.firstName || !formState.lastName) {
-      alert('Please enter both first name and last name.');
-      return
-    }
-    // Vérifie si le code postal ne contient que des chiffres après le filtrage
-    if (formState.zipCode && !/^\d+$/.test(formState.zipCode)) {
-      alert('Please enter a valid zip code containing only numbers.')
-      // Arrête la soumission du formulaire si le code postal n'est pas valide
-      return 
-    }
 
     const existingData = JSON.parse(localStorage.getItem('employeesData')) || []
     const updatedData = [...existingData, formState]
@@ -59,17 +49,21 @@ const Home = () => {
         <h2 className='subTitle'>Create Employee</h2>
         <form className='form' onSubmit={handleSubmit}>
           <InputText
-            label='First Name *'
+            label='First Name'
             name='firstName'
             value={formState.firstName || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
+            
           />
+          
           <InputText
-            label='Last Name *'
+            label='Last Name'
             name='lastName'
             value={formState.lastName || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
+            
           />
+          
           <InputDate
             label='Date of Birth'
             name='dateOfBirth'
@@ -102,12 +96,14 @@ const Home = () => {
               value={formState.state || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
             />
-            <InputText
+            <InputNumber
               label='Zip Code'
               name='zipCode'
               value={formState.zipCode || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
+              
             />
+            
           </fieldset>
             <InputSelect
               label='Department'
