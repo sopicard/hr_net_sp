@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  background-color:  #FFC3A1;
+  background-color:  #F0997D;
 }
 
 main {
@@ -17,7 +17,7 @@ main {
 }
 
 .mainTitle {
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 .button {
@@ -27,7 +27,7 @@ main {
   padding: 0.5rem;
   border-radius: 5px;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 1.1rem;
 }
 
 .button:hover {
@@ -38,7 +38,7 @@ main {
 
 .subTitle {
   font-weight: normal;
-  font-size: 34px;
+  font-size: 2.1rem;
 }
 
 .form {
@@ -73,7 +73,7 @@ main {
 }
 
 .form__label {
-  font-size: 14px;
+  font-size: 0.9rem;
   text-align: left;
 }
 
@@ -89,7 +89,7 @@ main {
 
 .form__legend {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.1rem;
   text-align: left;
 }
 
@@ -104,38 +104,41 @@ main {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-
 }
 
 .modal__content {
-  padding: 2rem;
   width: 14rem;
-  background-color: #F0997D;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px 0px #A75D5D;
+  height: 14rem;
+  background-color: #FFF3E2;
+  border-radius: 50%;
+  box-shadow: 5px 5px 5px 0px #A75D5D, inset 4px 4px 15px 0px #A75D5D, 5px 5px 15px 5px rgba(0,0,0,0);
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center; 
 }
 
 .modal__close {
-  position: absolute;
-  top: 2px;
-  right: 10px;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 1.1rem;
   color: #A75D5D;
+  background: none;
+  border: none;
+  margin: 0;
+  opacity: 0.7;
 }
 
 .modal__close:hover {
-  color: #FFC3A1;
+  color: #F0997D;
 }
 
 .modal__message {
-  font-size: 18px;
+  font-size: 1.25rem;
   font-weight: bold;
-  margin: 0;
-  border-radius: 10px;
-  padding: 2rem;
-  background-color: #FFC3A1;
-  box-shadow: 5px 5px 5px 0px #A75D5D;  
+  margin: 1rem 0 1rem;
+  text-align: center;
+  background-color: #FFF3E2;
+  border-radius: 5px;
 }
 
 /* StaffList */
