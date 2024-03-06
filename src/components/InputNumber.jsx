@@ -5,8 +5,16 @@ const InputNumber = ({ label, name, value, onChange }) => {
   
     return (
       <div className='form__input-wrapper'>
-        <label className='form__label'>{label}</label>
-        <input className='form__input' name={name} type="number" value={value} onChange={handleChange} />
+        <label className='form__label' htmlFor={name}>{label}</label>
+        <input 
+          className='form__input' 
+          name={name} 
+          type='number' 
+          value={value} 
+          onChange={handleChange} 
+          aria-label={label}
+          id={name}
+        />
       </div>
     )
   }

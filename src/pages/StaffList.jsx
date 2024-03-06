@@ -66,27 +66,29 @@ const StaffList = () => {
   return (
     <div>
       <main>
-        <Typography variant="h4" gutterBottom>Current Employees</Typography>
-        <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        <Typography variant='h4' gutterBottom>Current Employees</Typography>
+        <Box display='flex' justifyContent='space-between' alignItems='center' mb={2}>
           <TextField
-            className= "staff-list__search"
-            label="Search"
+            className= 'staff-list__search'
+            label='Search'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            variant="outlined"
-            size="small"
+            variant='outlined'
+            size='small'
+            aria-label='Search Input'
           />
-          <Box display="flex" flexDirection="rows" alignItems="center">
-            <Typography variant="body2" component="span" mr={1}>
+          <Box display='flex' flexDirection='row' alignItems='center'>
+            <Typography variant='body2' component='span' mr={1}>
               Show
             </Typography>
             <TextField
-              className="staff-list__select"
+              className='staff-list__select'
               select
               value={rowsPerPage}
               onChange={handleChangeRowsPerPage}
-              variant="outlined"
-              size="small"
+              variant='outlined'
+              size='small'
+              aria-label='Rows Per Page Select'
             >
               {[10, 25, 50, 100].map((option) => (
                 <MenuItem key={option} value={option}>
@@ -94,7 +96,7 @@ const StaffList = () => {
                 </MenuItem>
               ))}
             </TextField>
-            <Typography variant="body2" component="span" ml={1}>
+            <Typography variant='body2' component='span' ml={1}>
               entries
             </Typography>
           </Box>
@@ -105,14 +107,14 @@ const StaffList = () => {
               <TableRow>
                 {fields.map((field) => (
                   <TableCell key={field.name}>
-                    <Box display="flex" alignItems="center">
+                    <Box display='flex' alignItems='center'>
                       {field.label}
-                      <Box ml={1} display="flex" flexDirection="column" alignItems="center">
+                      <Box ml={1} display='flex' flexDirection='column' alignItems='center'>
                         <IconButton disableRipple onClick={() => handleRequestSort(field.name)}>
-                          {orderBy === field.name && order === 'asc' ? <ArrowDropUp sx={{ fontSize: 'medium', marginBottom: '-8px' }} color="primary" /> : <ArrowDropUp sx={{ fontSize: 'medium', marginBottom: '-8px' }} />}
+                          {orderBy === field.name && order === 'asc' ? <ArrowDropUp sx={{ fontSize: 'medium', marginBottom: '-8px' }} color='primary' /> : <ArrowDropUp sx={{ fontSize: 'medium', marginBottom: '-8px' }} />}
                         </IconButton>
                         <IconButton disableRipple onClick={() => handleRequestSort(field.name)}>
-                          {orderBy === field.name && order === 'desc' ? <ArrowDropDown sx={{ fontSize: 'medium', marginTop: '-8px' }} color="primary" /> : <ArrowDropDown sx={{ fontSize: 'medium', marginTop: '-8px' }} />}
+                          {orderBy === field.name && order === 'desc' ? <ArrowDropDown sx={{ fontSize: 'medium', marginTop: '-8px' }} color='primary' /> : <ArrowDropDown sx={{ fontSize: 'medium', marginTop: '-8px' }} />}
                         </IconButton>
                       </Box>
                     </Box>
@@ -131,33 +133,33 @@ const StaffList = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Box className='staff-list__entries' display="flex" justifyContent="space-between" alignItems="center" pt={1} pl={2}>
-          <Typography variant="body2" component="span">
+        <Box className='staff-list__entries' display='flex' justifyContent='space-between' alignItems='center' pt={1} pl={2}>
+          <Typography variant='body2' component='span'>
             Showing {Math.min(page * rowsPerPage + 1, filteredData.length)} to {Math.min((page + 1) * rowsPerPage, filteredData.length)} of {filteredData.length} entries
           </Typography>
-          <Box display="flex" alignItems="center">
+          <Box display='flex' alignItems='center'>
             <Button 
               disabled={page === 0} 
               onClick={() => handleChangePage(null, page - 1)} 
-              variant="outlined" color="primary" 
+              variant='outlined' color='primary' 
               className={`staff-list__pagination ${page === 0 ? 'current-page' : ''}`}
               >
                 Previous
               </Button>
-            <Box component="span" ml={2} mr={2}>
+            <Box component='span' ml={2} mr={2}>
               Page {page + 1}
             </Box>
             <Button 
               disabled={page >= Math.ceil(filteredData.length / rowsPerPage) - 1} 
               onClick={() => handleChangePage(null, page + 1)} 
-              variant="outlined" color="primary" 
+              variant='outlined' color='primary' 
               className={`staff-list__pagination ${page === Math.ceil(filteredData.length / rowsPerPage) - 1 ? 'current-page' : ''}`}
               >
                 Next
             </Button>
           </Box>
         </Box>
-        <Button className="staff-list__button" onClick={() => navigate('/')} variant="outlined" color="primary">Home</Button>
+        <Button className='staff-list__button' onClick={() => navigate('/')} variant='outlined' color='primary' aria-label='Home Button'>Home</Button>
       </main>
     </div>
   )

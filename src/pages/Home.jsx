@@ -45,7 +45,7 @@ const Home = () => {
     <div>
       <main>
         <h1 className='mainTitle'>HRnet</h1>
-        <button className='button' onClick={() => navigate('/staff-list')}>View current employees</button>
+        <button className='button' onClick={() => navigate('/staff-list')} aria-label='View current employees button'>View current employees</button>
         <h2 className='subTitle'>Create Employee</h2>
         <form className='form' onSubmit={handleSubmit}>
           <InputText
@@ -53,7 +53,7 @@ const Home = () => {
             name='firstName'
             value={formState.firstName || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
-            
+            aria-label='First Name Input'
           />
           
           <InputText
@@ -61,7 +61,7 @@ const Home = () => {
             name='lastName'
             value={formState.lastName || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
-            
+            aria-label='Last Name Input'
           />
           
           <InputDate
@@ -69,12 +69,14 @@ const Home = () => {
             name='dateOfBirth'
             value={formState.dateOfBirth || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
+            aria-label='Date of Birth Input'
           />
           <InputDate
             label='Start Date'
             name='startDate'
             value={formState.startDate || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
+            aria-label='Start Date Input'
           />
           <fieldset className='form__fieldset'>
             <legend className='form__legend'>Address</legend>
@@ -83,25 +85,28 @@ const Home = () => {
               name='street'
               value={formState.street || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
+              aria-label='Street Input'
             />
             <InputText
               label='City'
               name='city'
               value={formState.city || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
+              aria-label='City Input'
             />
             <InputSelect
               label='State'
               name='state'
               value={formState.state || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
+              aria-label='State Input'
             />
             <InputNumber
               label='Zip Code'
               name='zipCode'
               value={formState.zipCode || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
-              
+              aria-label='Zip Code Input'
             />
             
           </fieldset>
@@ -110,8 +115,9 @@ const Home = () => {
               name='department'
               value={formState.department || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
+              aria-label='Department Input'
             />
-          <button className='button' type='submit'>Save</button>
+          <button className='button' type='submit' aria-label='Save Button'>Save</button>
         </form>
         <div>
           <Modal isOpen={isModalOpen} onClose={handleCloseModal} message='Employee Created !' />

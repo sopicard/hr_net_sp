@@ -28,8 +28,15 @@ const InputSelect = ({ label, name, value, onChange }) => {
 
   return (
     <div className='form__input-wrapper'>
-      <label className='form__label' >{label}</label>
-      <select className='form__select' name={name} value={value} onChange={handleChange}>
+      <label className='form__label' htmlFor={name}>{label}</label>
+      <select 
+        className='form__select' 
+        name={name} 
+        value={value} 
+        onChange={handleChange}
+        aria-label={label}
+        id={name}
+      >
         {options}
       </select>
     </div>
