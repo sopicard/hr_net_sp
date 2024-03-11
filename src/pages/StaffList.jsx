@@ -89,9 +89,10 @@ const StaffList = () => {
               variant='outlined'
               size='small'
               aria-label='Rows Per Page Select'
+              aria-labelledby='show-label'
             >
               {[10, 25, 50, 100].map((option) => (
-                <MenuItem key={option} value={option}>
+                <MenuItem key={option} value={option} aria-label={`${option} rows per page`}>
                   {option}
                 </MenuItem>
               ))}
@@ -106,14 +107,14 @@ const StaffList = () => {
             <TableHead>
               <TableRow>
                 {fields.map((field) => (
-                  <TableCell key={field.name}>
+                  <TableCell key={field.name} scope='col'>
                     <Box display='flex' alignItems='center'>
                       {field.label}
                       <Box ml={1} display='flex' flexDirection='column' alignItems='center'>
-                        <IconButton disableRipple onClick={() => handleRequestSort(field.name)}>
+                        <IconButton disableRipple aria-label={`Sort by ${field.label} ascending`} onClick={() => handleRequestSort(field.name)}>
                           {orderBy === field.name && order === 'asc' ? <ArrowDropUp sx={{ fontSize: 'medium', marginBottom: '-8px' }} color='primary' /> : <ArrowDropUp sx={{ fontSize: 'medium', marginBottom: '-8px' }} />}
                         </IconButton>
-                        <IconButton disableRipple onClick={() => handleRequestSort(field.name)}>
+                        <IconButton disableRipple aria-label={`Sort by ${field.label} descending`} onClick={() => handleRequestSort(field.name)}>
                           {orderBy === field.name && order === 'desc' ? <ArrowDropDown sx={{ fontSize: 'medium', marginTop: '-8px' }} color='primary' /> : <ArrowDropDown sx={{ fontSize: 'medium', marginTop: '-8px' }} />}
                         </IconButton>
                       </Box>
