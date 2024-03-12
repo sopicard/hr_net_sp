@@ -51,7 +51,7 @@ npm install react-ball-modal
 Once installed, you can import and use the Modal component from react-ball-modal in your HRnet project:
 
 ```jsx
-import Modal from 'react-ball-modal/src/components/Modal'
+import Modal from 'react-ball-modal'
 
 // Example usage
 <Modal isOpen={isOpen} onClose={handleCloseModal} message="Choose your content!" />
