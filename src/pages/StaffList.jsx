@@ -10,14 +10,17 @@ const formatDate = (date) => {
 }
 
 const StaffList = () => {
+  // Utilisation du contexte de l'application pour récupérer les données des employés
   const { employeesData } = useAppContext()
   const navigate = useNavigate()
+  // États locaux pour la recherche, la pagination et le tri des données
   const [searchTerm, setSearchTerm] = useState('')
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [orderBy, setOrderBy] = useState('')
   const [order, setOrder] = useState('asc')
 
+  // Surveille les changements dans les données des employés
   useEffect(() => {}, [employeesData])
 
   const fields = [
@@ -32,6 +35,7 @@ const StaffList = () => {
     { label: 'Department', name: 'department', type: 'select' },
   ]
 
+  // Tri des données des employés
   const sortedData = orderBy
     ? employeesData.slice().sort((a, b) => {
         if (order === 'asc') {
@@ -42,22 +46,26 @@ const StaffList = () => {
       })
     : employeesData
 
+  // Filtre les données des employés   
   const filteredData = sortedData.filter(employee => {
     return Object.values(employee).some(value =>
       value.toString().toLowerCase().includes(searchTerm.toLowerCase())
     )
   })
  
+  // Gére le changement de tri 
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === 'asc'
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
   }
 
+  // Gére le changement de page
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
 
+  // Gérer le changement du nombre de lignes par page
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
