@@ -54,16 +54,14 @@ const Home = () => {
             value={formState.firstName || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
             aria-label='First Name Input'
-          />
-          
+          />        
           <InputText
             label='Last Name'
             name='lastName'
             value={formState.lastName || ''}
             onChange={(fieldName, value) => handleChange(fieldName, value)}
             aria-label='Last Name Input'
-          />
-          
+          />          
           <InputDate
             label='Date of Birth'
             name='dateOfBirth'
@@ -107,8 +105,7 @@ const Home = () => {
               value={formState.zipCode || ''}
               onChange={(fieldName, value) => handleChange(fieldName, value)}
               aria-label='Zip Code Input'
-            />
-            
+            />            
           </fieldset>
             <InputSelect
               label='Department'
